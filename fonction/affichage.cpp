@@ -1,0 +1,90 @@
+void sautDeLigne(int size){
+    for(int i = 0; i < size; i++){
+        cout<<endl;
+    }
+}
+
+void espace(int size){
+    for(int i = 0; i < size; i++){
+        cout<<" "<<endl;
+    }
+}
+
+void affichageTableauInt(int tableau[], int size){
+    for(int i = 0; i < size; i++){
+        cout<<tableau[i];
+    }
+    cout<<endl;
+}
+
+void affichageTableauString(string tableau){
+    for(int i = 0; i < tableau.length(); i++){
+        cout<<tableau[i];
+        /*cout<<i;*/
+    }
+    cout<<endl;
+}
+
+void affichageRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position){
+    for(int i = 0; i < sizeRegistre; i++){
+        cout<<registre[position][i];
+    }
+    cout<<endl;
+}
+
+void commande(){
+    cout<<"COMMANDE"<<endl;
+    sautDeLigne(1);
+    cout<<"&[<numero registre>] !00 --> Convertie un nombre decimal dans un registre"<<endl;
+    sautDeLigne(1);
+    cout<<"&[<numero registre>] --> Affiche un registre"<<endl;
+    cout<<"&[<numero registre>] ! --> Affiche un registre en decimal"<<endl;
+    cout<<"ls --> Affiche les commandes"<<endl;
+    sautDeLigne(1);
+    cout<<"&[<numero registre>] &[<numero registre>] 01 &[<numero registre>] --> Addition"<<endl;
+    cout<<"&[<numero registre>] &[<numero registre>] 02 &[<numero registre>] --> Soustraction"<<endl;
+    cout<<"&[<numero registre>] &[<numero registre>] 03 &[<numero registre>] --> Multiplication"<<endl;
+    sautDeLigne(1);
+    cout<<"*[<numero registre>] --> Reinitialise le registre"<<endl;
+    cout<<"** --> Reinitialise les registres"<<endl;
+    sautDeLigne(1);
+    cout<<"/clear --> Clear le terminal"<<endl;
+    cout<<"&/& --> Arret"<<endl;
+}
+
+void affichageClavierTdeux(int & nombre, string phraseDebut,string motUn, string motDeux, HANDLE console){
+    if(nombre == 0 || nombre == -1){
+        nombre = 0;
+        SetConsoleTextAttribute(console, 9);
+        cout<<phraseDebut<<endl;
+        SetConsoleTextAttribute(console, 10);
+        cout<<"--> "<<motUn<<endl;
+        SetConsoleTextAttribute(console, 11);
+        cout<<"    "<<motDeux<<endl;
+        SetConsoleTextAttribute(console, 12);
+        cout<<"    Retour"<<endl;
+    }
+    else if(nombre == 1){
+        SetConsoleTextAttribute(console, 9);
+        cout<<phraseDebut<<endl;
+        SetConsoleTextAttribute(console, 10);
+        cout<<"    "<<motUn<<endl;
+        SetConsoleTextAttribute(console, 11);
+        cout<<"--> "<<motDeux<<endl;
+        SetConsoleTextAttribute(console, 12);
+        cout<<"    Retour"<<endl;
+
+    }
+    else if(nombre == 2 || nombre == 3){
+    	nombre = 2;
+        SetConsoleTextAttribute(console, 9);
+        cout<<phraseDebut<<endl;
+        SetConsoleTextAttribute(console, 10);
+        cout<<"    "<<motUn<<endl;
+        SetConsoleTextAttribute(console, 11);
+        cout<<"    "<<motDeux<<endl;
+        SetConsoleTextAttribute(console, 12);
+        cout<<"--> Retour"<<endl;
+    }
+    SetConsoleTextAttribute(console, 15);
+}
