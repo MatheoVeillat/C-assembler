@@ -107,11 +107,11 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
 				affichageRegistre(registre, nombreRetenueUn);
 		}
-		else if(saisie[0] == '|' && saisie.length() == 3){
+/*		else if(saisie[0] == '|' && saisie.length() == 3){
 			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
 				cout<<"test"<<endl;
 				cout<<"Le registre "<<nombreRetenueUn<<" possede le nombre hexadecimal "<<decimalHexadecimalRegistre(registre, nombreRetenueUn)<<endl;
-		}
+		}*/
 		else if(saisie[0] == '&' && saisie[3] == ' ' && saisie[4] == '!' && saisie.length() == 5){
 			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
 				cout<<"Le registre "<<nombreRetenueUn<<" possede le nombre decimal "<<binaireDecimalBool(registre, nombreRetenueUn)<<endl;

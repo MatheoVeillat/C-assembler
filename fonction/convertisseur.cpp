@@ -85,7 +85,7 @@ string *decimalHexadecimal(std::string & stringNombre){ //--> Casser
 	return tableauHexadecimal;
 }
 
-string *decimalHexadecimalRegistre(bool registre[sizeNombreRegistre][sizeRegistre],  int position){ //--> Casser 
+/*string *decimalHexadecimalRegistre(bool registre[sizeNombreRegistre][sizeRegistre],  int position){ //--> Casser 
 	int size = 0, *tabBinaire = new int;
 	string *tableauRetenu = new string[4]; 
 	tableauRetenu = initTableauString(tableauRetenu, 4);
@@ -96,7 +96,7 @@ string *decimalHexadecimalRegistre(bool registre[sizeNombreRegistre][sizeRegistr
 		tableauHexadecimal[j] = symbl[8 * tabBinaire[compteur - 3 + i] + 4 * tabBinaire[compteur - 2 + i]+ 2 * tabBinaire[compteur - 1 + i]+ tabBinaire[compteur + i] ];
 	} 
 	return tableauHexadecimal;
-}
+}*/
 
 
 void add(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position){
