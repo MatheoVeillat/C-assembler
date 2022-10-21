@@ -6,7 +6,7 @@ void sautDeLigne(int size){
 
 void espace(int size){
     for(int i = 0; i < size; i++){
-        cout<<" "<<endl;
+        cout<<" ";
     }
 }
 
@@ -23,6 +23,29 @@ void affichageTableauString(string tableau){
         /*cout<<i;*/
     }
     cout<<endl;
+}
+
+void afficherTabBool(bool registre[sizeNombreRegistre][sizeRegistre]){
+    for(int i = 0; i < sizeNombreRegistre; i++){
+        for(int j = 0; j < sizeRegistre; j++){
+            cout<<registre[i][j];
+        }
+        cout<<endl;
+    }
+}
+
+void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif){
+    if(verif == true){
+        system("cls");
+        for(int i = 0; i < sizeNombreRegistre; i++){
+            espace(200);
+            for(int j = 0; j < sizeRegistre; j++){
+                cout<<registre[i][j];
+            }
+            cout<<endl;
+        }
+        verif = false;
+    }
 }
 
 void affichageRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position){

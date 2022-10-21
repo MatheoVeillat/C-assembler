@@ -12,6 +12,10 @@ void affichageTableauInt(int tableau[], int size);
 
 void affichageTableauString(string tableau);
 
+void afficherTabBool(bool registre[sizeNombreRegistre][sizeRegistre]);
+
+void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif);
+
 void affichageRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position);
 
 void commande();

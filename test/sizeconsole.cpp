@@ -4,21 +4,24 @@
 #include<string>
 #include<conio.h>
 
-/*const int width = 1000; // 100 caractères de long
+const int width = 1000; // 100 caractères de long
 const int height = 10;
 
-void setSize(short x, short y, HWND consoleWindow){
-	SetWindowPos(consoleWindow, 0, 0, 0, 1000, 0, SWP_NOSIZE | SWP_NOZORDER );
-}
+/*void setSize(short x, short y, HWND consoleWindow){
+	SetWindowPos(consoleWindow, 0, 0, , 1000, 0, SWP_NOSIZE | SWP_NOZORDER );
+}*/
 
 int main(){
+        ::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
 
-	HWND consoleWindow = GetConsoleWindow();
+    std::cout << "Hello world from full screen app!" << std::endl; 
+    std::cin.get();
+/*	HWND consoleWindow = GetConsoleWindow();
 
 	setSize(width, height, consoleWindow);
-	system("pause");
+	system("pause");*/
 }
-*/
+
 /*int main(int argc, char *argv[]) 
 {
     CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -34,7 +37,7 @@ int main(){
     return 0;
 }*/
 
-HWND WINAPI GetConsoleWindowNT(void)
+/*HWND WINAPI GetConsoleWindowNT(void)
 {
     //declare function pointer type
     typedef HWND WINAPI(*GetConsoleWindowT)(void);
@@ -64,14 +67,14 @@ void SetBackgroundColor(int BackC)
 int main()
 {
     HWND hWnd=GetConsoleWindowNT();
-    MoveWindow(hWnd,0,0,800,200,TRUE);
-    int i=0;
+/*    MoveWindow(hWnd,0,0,800,200,TRUE);*/
+   /* int i=0;*/
   /*  for(i=0; i<256; i++){
         SetBackgroundColor(i);
         printf("Test Text Background Color for value i: %d\n",i);
     }*/
-
+/*
     SetBackgroundColor(72);
     Sleep(1);
     system("pause");
-}
+}*/
