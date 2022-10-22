@@ -166,3 +166,22 @@ void multi(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegist
 	else 
 		decimalBinaireBool(registre, resultat ,position);
 }
+
+void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[], char retenuChiffre[]){
+	for(int i = 1; i < saisie.length(); i++){
+		if(saisie[0] == ':'){
+			for(int y = 0; y <= sizeRegistre; y++){
+				if(y + 1 >= saisie.length())
+					retenuChiffre[y] = ' ';
+				else
+					retenuChiffre[y] = saisie[y + 1];
+			}
+		}
+		else if(i == 1 || i == 2 )
+			retenuUn[i - 1] = saisie[i];
+		else if(i == 5 || i == 6)
+			retenuDeux[i - 5] = saisie[i];
+		else if(i == 12 || i == 13)
+			retenuTrois[i - 12] = saisie[i];
+	}		
+}

@@ -55,6 +55,11 @@ void affichageRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int p
     cout<<endl;
 }
 
+void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif){
+    system("pause");
+    affichageTerminalRegistre(registre, verif);   
+}
+
 void commande(){
     cout<<"COMMANDE"<<endl;
     sautDeLigne(1);

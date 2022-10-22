@@ -18,6 +18,8 @@ void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], 
 
 void affichageRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position);
 
+void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif);
+
 void commande();
 
 void affichageClavierTdeux(int & nombre, string phraseDebut,string motUn, string motDeux, HANDLE console);
