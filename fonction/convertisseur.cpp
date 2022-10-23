@@ -9,7 +9,7 @@ int *inverserTableauBinaireInt(int *tableauOriginal, int size){
 	return tableauOriginal;
 }
 
-bool *inverserTableauBinaireBool(bool *tableauOriginal, int position){
+void inverserTableauBinaireBool(bool tableauOriginal[]){
 	int j = 0, temp = 0;
 	while(j < sizeRegistre/2){
 		temp = tableauOriginal[j];
@@ -17,7 +17,17 @@ bool *inverserTableauBinaireBool(bool *tableauOriginal, int position){
 		tableauOriginal[sizeRegistre - 1 - j] = temp;
 		j++;
 	}
-	return tableauOriginal;
+}
+
+void inverserTableauChar(char tableauOriginal[]){
+	int j = 0;
+	char temp;
+	while(j < sizeRegistre/2){
+		temp = tableauOriginal[j];
+		tableauOriginal[j] = tableauOriginal[sizeRegistre - 1 - j];
+		tableauOriginal[sizeRegistre - 1 - j] = temp;
+		j++;
+	}
 }
 
 //--> Convertisseur decimal, binaire qui mets la valeur dans un tableau de multiple de 4 et qui retourne un entier 
@@ -49,7 +59,7 @@ void decimalBinaireBool(bool (&registre)[sizeNombreRegistre][sizeRegistre], long
 		tabBinaire[i] = resultat%2;
 		resultat = resultat/2;
 	}
-	tabBinaire = inverserTableauBinaireBool(tabBinaire, position);
+	inverserTableauBinaireBool(tabBinaire);
 	changerValeurRegistre(registre, tabBinaire, position);
 }
 
@@ -167,21 +177,38 @@ void multi(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegist
 		decimalBinaireBool(registre, resultat ,position);
 }
 
-void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[], char retenuChiffre[]){
-	for(int i = 1; i < saisie.length(); i++){
-		if(saisie[0] == ':'){
-			for(int y = 0; y <= sizeRegistre; y++){
-				if(y + 1 >= saisie.length())
-					retenuChiffre[y] = ' ';
-				else
-					retenuChiffre[y] = saisie[y + 1];
-			}
-		}
-		else if(i == 1 || i == 2 )
+void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[]){
+	for(int i = 1; i < saisie.length(); i++){	
+		if(i == 1 || i == 2 )
 			retenuUn[i - 1] = saisie[i];
 		else if(i == 5 || i == 6)
 			retenuDeux[i - 5] = saisie[i];
 		else if(i == 12 || i == 13)
 			retenuTrois[i - 12] = saisie[i];
-	}		
+	}
+}
+
+void recuperateurNombre(string saisie, char retenuChiffre[]){
+	for(int y = 0; y <= sizeRegistre; y++){
+		if(y + 5 > saisie.length())
+			retenuChiffre[y] = ' ';
+		else
+			retenuChiffre[y] = saisie[y + 5];
+	}
+}
+
+void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position){ 
+	/*inverseEspaceNombre(saisie, retenuChiffre);*/
+	/*if(verificateurEntrerBinaire(retenuChiffre, sizeRegistre)){*/
+	bool nouvelleValeur[sizeRegistre];
+	initTableauBool(nouvelleValeur);
+		for(int i = 0; i < sizeRegistre; i++){
+			if(retenuChiffre[i] == '0')
+				nouvelleValeur[i] = 0;
+			else if(retenuChiffre[i] == '1')
+				nouvelleValeur[i] = 1;
+		}
+	inverserTableauBinaireBool(nouvelleValeur);
+	changerValeurRegistre(registre, nouvelleValeur, position);
+	/*}*/		
 }

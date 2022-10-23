@@ -12,6 +12,8 @@ void affichageTableauInt(int tableau[], int size);
 
 void affichageTableauString(string tableau);
 
+void affichageTableauChar(char tableau[], int size);
+
 void afficherTabBool(bool registre[sizeNombreRegistre][sizeRegistre]);
 
 void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif);
@@ -27,7 +29,9 @@ void affichageClavierTdeux(int & nombre, string phraseDebut,string motUn, string
 //Convertisseur
 int *inverserTableauBinaireInt(int *tableauOriginal, int size);
 
-bool *inverserTableauBinaireBool(bool *tableauOriginal, int position);
+void inverserTableauBinaireBool(bool tableauOriginal[]);
+
+void inverserTableauChar(char tableauOriginal);
 
 int *decimalBinaireInt(std::string & stringNombre, int & size);
 
@@ -49,12 +53,20 @@ void sous(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistr
 
 void multi(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position);
 
-//Verificateur
-int verificateur();
+void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[]);
 
-void verificateurBinaire();
+void recuperateurNombre(string saisie, char retenuChiffre[]);
+
+void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position);
+
+//Verificateur
+int verificateur(string stringNombre);
+
+void verificateurBinaire(string stringNombre);
 
 bool verificateurRegistre(string stringNombre[], int & nombreRetenu, int size, bool limitationRegistre);
+
+bool verificateurEntrerBinaire(char charNombre[], int size);
 
 //Init 
 int *initTableauInt(int tableau[], int size); 
@@ -67,6 +79,7 @@ void initRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre]);
 
 void initTableauBool(bool *tableauOriginal);
 
+void initTableauChar(char tableauOriginal[]);
 //Registre --> Aucun sous programme dans le fichier  
 void reinilialiserRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position);
 

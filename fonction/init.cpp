@@ -28,8 +28,15 @@ void initRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
     }
 }
 
-void initTableauBool(bool *tableauOriginal){
+void initTableauBool(bool tableauOriginal[]){
 	for(int i = 0;i<sizeRegistre; i++){
 		tableauOriginal[i] = 0;
+	}
+}
+
+void initTableauChar(char tableauOriginal[]){
+	for(int i = 0;i <= sizeRegistre ; i++){
+		cout<<i<<endl;
+		tableauOriginal[i] = '0';
 	}
 }

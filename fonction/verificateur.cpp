@@ -22,7 +22,7 @@ int verificateur(string stringNombre){ //Retourne une chaine de caractere a un n
 	return intNombre;
 }
 
-void verificateurBinaire( string stringNombre){ //Retourne une chaine de caractere a un nombre en verifiant 
+void verificateurBinaire(string stringNombre){ //Retourne une chaine de caractere a un nombre en verifiant 
 	/*string stringNombre;*/
 	char choix;
 	int intNombre = 0;
@@ -50,23 +50,18 @@ bool verificateurRegistre(char stringNombre[], int & nombreRetenu, int size, boo
 			nombreRetenu = nombreRetenu * 10 + nombreActuelle;
 		} 
 	}
-	if(nombreRetenu > sizeNombreRegistre && limitationRegistre == true) return false;
+	if(nombreRetenu > sizeNombreRegistre && limitationRegistre == true) {
+	return false;
+	}
 	else return true;
 }
 
-void verificateurBinaireRegistre( string stringNombre){ //Modifier pour verifier si l entre du tableau est juste  
-	/*string stringNombre;*/
-	char choix;
+bool verificateurEntrerBinaire(char charNombre[], int size){ 
 	int intNombre = 0;
-	cout<<"Taper votre nombre"<<endl;
-	getline(std::cin,stringNombre);
-	for(int i = 0, nombreActuelle = 0, compteur = 0; compteur != stringNombre.length();i++){
-		choix = stringNombre[i];
-		if(choix != '1' && choix != '0' ){
-			cout<<"Erreur taper votre nouveau nombre"<<endl;
-			getline(std::cin,stringNombre);
-			i = - 1, compteur = 0, intNombre = 0;
-		}
-		else compteur = compteur + 1;
+	for(int i = 0, nombreActuelle = 0; i != size; i++){
+		if(charNombre[i] != '1' && charNombre[i] != '0')
+			cout<<"pk ?"<<charNombre[i]<<endl;
+			return false;
 	}
+	return true;
 }

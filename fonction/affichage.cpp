@@ -20,8 +20,17 @@ void affichageTableauInt(int tableau[], int size){
 void affichageTableauString(string tableau){
     for(int i = 0; i < tableau.length(); i++){
         cout<<tableau[i];
-        /*cout<<i;*/
     }
+    cout<<endl;
+}
+
+void affichageTableauChar(char tableau[], int size){
+    int compteur = 0;
+    for(int i = 0; i <= size; i++){
+        compteur = i;
+        cout<<tableau[i];
+    }
+    cout<<" Le compteur "<<compteur<<endl;
     cout<<endl;
 }
 

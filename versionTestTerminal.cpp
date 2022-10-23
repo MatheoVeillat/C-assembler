@@ -56,14 +56,15 @@ ls --> Liste les commandes
 
 void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 	::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
+	string saisie; 
 	char retenuUn[2], retenuDeux[2], retenuTrois[2], retenuChiffre[sizeRegistre]; 
-	string saisie;
 	int nombreRetenueUn = 0, nombreRetenueDeux = 0, nombreRetenueTrois = 0;
-	bool verif = true; 
+	bool verif = true;
+	initTableauChar(retenuChiffre);
 	while(saisie[0] != '&' || saisie[1] != '/' || saisie[2] != '&' || saisie.length() != 3){ /*&/& --> Arreter */
 		affichageTerminalRegistre(registre, verif);
 		getline(cin,saisie);
-		recuperateur(saisie, retenuUn, retenuDeux, retenuTrois, retenuChiffre);
+		recuperateur(saisie, retenuUn, retenuDeux, retenuTrois);
 		if(saisie[0] == '&' && saisie[3] == ' ' && saisie[4] == '&' && saisie[7] == ' ' && saisie[8] == '0' && saisie[9] == '1' && saisie[10] == ' ' && saisie[11] == '&' && saisie.length() == 14){ //Espace non vérifié
 			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true) && verificateurRegistre(retenuDeux, nombreRetenueDeux, 2, true) && verificateurRegistre(retenuTrois, nombreRetenueTrois, 2, true)){
 				add(registre, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois);
@@ -71,11 +72,14 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 				pauseNewAffichage(registre, verif = true);
 			}
 		}
-		else if(saisie[0] == ':'){
-			for(int i = 0; i <= sizeRegistre; i++){
-				cout<<retenuChiffre[i];
+		else if(saisie[0] == '&' && saisie[3] == ' ' && saisie[4] == ':'){
+			recuperateurNombre(saisie, retenuChiffre);
+			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true)){
+				entrerBinaire(registre, saisie, retenuChiffre, nombreRetenueUn);
+				cout<<"Succes saisie "<<endl;
+				pauseNewAffichage(registre, verif = true);
 			}
-		} 
+		}
 		else if(saisie[0] == '&' && saisie[3] == ' ' && saisie[4] == '&' && saisie[7] == ' ' && saisie[8] == '0' && saisie[9] == '2' && saisie[10] == ' ' && saisie[11] == '&' && saisie.length() == 14){
 			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true) && verificateurRegistre(retenuDeux, nombreRetenueDeux, 2, true) && verificateurRegistre(retenuTrois, nombreRetenueTrois, 2, true)){
 				sous(registre, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois);
