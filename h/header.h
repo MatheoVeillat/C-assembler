@@ -59,6 +59,12 @@ void recuperateurNombre(string saisie, char retenuChiffre[]);
 
 void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position);
 
+void entrerDecimal(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position);
+
+void divisionRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position);
+
+void divisionRegistreReste(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position);
+
 //Verificateur
 int verificateur(string stringNombre);
 
@@ -68,6 +74,7 @@ bool verificateurRegistre(string stringNombre[], int & nombreRetenu, int size, b
 
 bool verificateurEntrerBinaire(char charNombre[], int size);
 
+bool verificateurNombreTerminal(char stringNombre[], long long unsigned int & intNombre);
 //Init 
 int *initTableauInt(int tableau[], int size); 
 

@@ -188,27 +188,72 @@ void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenu
 	}
 }
 
-void recuperateurNombre(string saisie, char retenuChiffre[]){
+void recuperateurNombre(string saisie, char retenuChiffre[], int position){
 	for(int y = 0; y <= sizeRegistre; y++){
-		if(y + 5 > saisie.length())
-			retenuChiffre[y] = ' ';
+		if(y + position + 1 > saisie.length())
+			retenuChiffre[y] = '/';
 		else
-			retenuChiffre[y] = saisie[y + 5];
+			retenuChiffre[y] = saisie[y + position];
 	}
 }
 
 void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position){ 
-	/*inverseEspaceNombre(saisie, retenuChiffre);*/
-	/*if(verificateurEntrerBinaire(retenuChiffre, sizeRegistre)){*/
 	bool nouvelleValeur[sizeRegistre];
+	int compteur = 0; 
+	recuperateurNombre(saisie, retenuChiffre, 5);
 	initTableauBool(nouvelleValeur);
-		for(int i = 0; i < sizeRegistre; i++){
-			if(retenuChiffre[i] == '0')
-				nouvelleValeur[i] = 0;
-			else if(retenuChiffre[i] == '1')
-				nouvelleValeur[i] = 1;
+	for(int i = 0; i < sizeRegistre; i++){
+		if(retenuChiffre[i] == '0')
+			nouvelleValeur[i] = 0;
+		else if(retenuChiffre[i] == '1')
+			nouvelleValeur[i] = 1;
+		else if(retenuChiffre[i] != '1' && retenuChiffre[i] != '0' && retenuChiffre[i] != '/')
+			compteur++;
+	}
+	if(compteur == 0){
+		inverserTableauBinaireBool(nouvelleValeur);
+		changerValeurRegistre(registre, nouvelleValeur, position);
+		cout<<"Succes saisie "<<endl;
+	}
+	else
+		cout<<"ERROR"<<endl;
+}
+
+void entrerDecimal(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position){
+	long long unsigned int resultat = 0 ;
+	recuperateurNombre(saisie, retenuChiffre, 5);
+	if(verificateurNombreTerminal(retenuChiffre, resultat)){
+		decimalBinaireBool(registre, resultat, position);
+		cout<<"La valeur decimal "<<resultat<<" a ete convertie dans le registre "<<position<<endl;
+	}
+	else 
+		cout<<"ERROR"<<endl;
+}
+
+void divisionRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position){
+	long long unsigned int dPremierRegistre = binaireDecimalBool(registre, premierRegistre), dDeuxiemeRegistre = binaireDecimalBool(registre, deuxiemeRegistre), resultat;
+	bool nouvelleValeur[sizeRegistre]; 
+	resultat = dPremierRegistre/dDeuxiemeRegistre;
+	if(resultat <= 0){
+		for(int y = 0; y < sizeRegistre ; y++){
+			nouvelleValeur[y] = 1;
+			changerValeurRegistre(registre, nouvelleValeur, position);
 		}
-	inverserTableauBinaireBool(nouvelleValeur);
-	changerValeurRegistre(registre, nouvelleValeur, position);
-	/*}*/		
+	}
+	else
+		decimalBinaireBool(registre, resultat ,position);
+}
+
+void divisionRegistreReste(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position){
+	long long unsigned int dPremierRegistre = binaireDecimalBool(registre, premierRegistre), dDeuxiemeRegistre = binaireDecimalBool(registre, deuxiemeRegistre), resultat;
+	bool nouvelleValeur[sizeRegistre]; 
+	resultat = dPremierRegistre/dDeuxiemeRegistre;
+	if(resultat <= 0){
+		for(int y = 0; y < sizeRegistre ; y++){
+			nouvelleValeur[y] = 1;
+			changerValeurRegistre(registre, nouvelleValeur, position);
+		}
+	}
+	else
+		decimalBinaireBool(registre, resultat ,position);
 }

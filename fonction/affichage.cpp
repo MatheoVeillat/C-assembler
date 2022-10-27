@@ -46,8 +46,28 @@ void afficherTabBool(bool registre[sizeNombreRegistre][sizeRegistre]){
 void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif){
     if(verif == true){
         system("cls");
-        for(int i = 0; i < sizeNombreRegistre; i++){
-            espace(200);
+        espace(1);
+        cout<<"HISTORIQUE"<<endl;
+        espace(199);
+        cout<<"REGISTRE"<<endl;
+        sautDeLigne(1);
+        for(int i = 0; i < sizeNombreRegistre ; i++){
+            espace(199);
+            if(i < 10){
+                cout<<i<<"   ";
+/*                if( i < 5){
+                    cout<<"Coucou je suis aligne";
+                    espace(150);
+                    cout<<i<<"   ";
+                }
+                else {
+                    espace(150);
+                    cout<<i<<"   ";
+                }*/
+            } 
+            else {
+                cout<<i<<"  ";
+            }
             for(int j = 0; j < sizeRegistre; j++){
                 cout<<registre[i][j];
             }
@@ -72,15 +92,18 @@ void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], bool & v
 void commande(){
     cout<<"COMMANDE"<<endl;
     sautDeLigne(1);
-    cout<<"&[<numero registre>] !00 --> Convertie un nombre decimal dans un registre"<<endl;
+    cout<<"&[<numero registre>] ![<nombre décimal>] --> Convertie un nombre decimal dans un registre"<<endl;
+    cout<<"&[<numero registre>] :[<nombre binaire>] --> Convertie un nombre binaire dans un registre"<<endl;
     sautDeLigne(1);
     cout<<"&[<numero registre>] --> Affiche un registre"<<endl;
     cout<<"&[<numero registre>] ! --> Affiche un registre en decimal"<<endl;
-    cout<<"ls --> Affiche les commandes"<<endl;
+    cout<<"help --> Affiche les commandes"<<endl;
     sautDeLigne(1);
     cout<<"&[<numero registre>] &[<numero registre>] 01 &[<numero registre>] --> Addition"<<endl;
     cout<<"&[<numero registre>] &[<numero registre>] 02 &[<numero registre>] --> Soustraction"<<endl;
     cout<<"&[<numero registre>] &[<numero registre>] 03 &[<numero registre>] --> Multiplication"<<endl;
+    cout<<"&[<numero registre>] &[<numero registre>] 04 &[<numero registre>] --> Division"<<endl;
+    cout<<"&[<numero registre>] &[<numero registre>] 05 &[<numero registre>] --> Reste de la Division"<<endl;
     sautDeLigne(1);
     cout<<"*[<numero registre>] --> Reinitialise le registre"<<endl;
     cout<<"** --> Reinitialise les registres"<<endl;

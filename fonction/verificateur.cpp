@@ -56,12 +56,28 @@ bool verificateurRegistre(char stringNombre[], int & nombreRetenu, int size, boo
 	else return true;
 }
 
-bool verificateurEntrerBinaire(char charNombre[], int size){ 
+bool verificateurEntrerBinaire(char charNombre[], int size){  //delete 
 	int intNombre = 0;
 	for(int i = 0, nombreActuelle = 0; i != size; i++){
 		if(charNombre[i] != '1' && charNombre[i] != '0')
-			cout<<"pk ?"<<charNombre[i]<<endl;
 			return false;
+	}
+	return true;
+}
+
+bool verificateurNombreTerminal(char stringNombre[], long long unsigned int & intNombre){ 
+	for(int i = 0, nombreActuelle = 0, compteur = 0; stringNombre[compteur] != '/' ;i++){
+		if(stringNombre[i] != '/' && stringNombre[i] != '1' && stringNombre[i] != '2' && stringNombre[i] != '3' && stringNombre[i] != '4' && stringNombre[i] != '5' && stringNombre[i] != '6' && stringNombre[i] != '7' && stringNombre[i] != '8' && stringNombre[i] != '9' && stringNombre[i] != '0')
+		{
+			return false;	
+		}	
+		else {
+			if(stringNombre[i] != '/'){
+				nombreActuelle = int(stringNombre[i]) - 48;
+				intNombre = intNombre * 10 + nombreActuelle;
+				compteur++;
+			}
+		} 
 	}
 	return true;
 }
