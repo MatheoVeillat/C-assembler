@@ -233,27 +233,30 @@ void entrerDecimal(bool (&registre)[sizeNombreRegistre][sizeRegistre], string sa
 void divisionRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position){
 	long long unsigned int dPremierRegistre = binaireDecimalBool(registre, premierRegistre), dDeuxiemeRegistre = binaireDecimalBool(registre, deuxiemeRegistre), resultat;
 	bool nouvelleValeur[sizeRegistre]; 
-	resultat = dPremierRegistre/dDeuxiemeRegistre;
-	if(resultat <= 0){
+	if(dPremierRegistre <= deuxiemeRegistre){
 		for(int y = 0; y < sizeRegistre ; y++){
-			nouvelleValeur[y] = 1;
+			nouvelleValeur[y] = 0;
 			changerValeurRegistre(registre, nouvelleValeur, position);
 		}
 	}
-	else
-		decimalBinaireBool(registre, resultat ,position);
+	else {
+		resultat = dPremierRegistre/dDeuxiemeRegistre;
+		decimalBinaireBool(registre, resultat ,position);	
+	}
 }
 
 void divisionRegistreReste(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position){
 	long long unsigned int dPremierRegistre = binaireDecimalBool(registre, premierRegistre), dDeuxiemeRegistre = binaireDecimalBool(registre, deuxiemeRegistre), resultat;
 	bool nouvelleValeur[sizeRegistre]; 
 	resultat = dPremierRegistre/dDeuxiemeRegistre;
-	if(resultat <= 0){
+	if(dPremierRegistre <= deuxiemeRegistre){
 		for(int y = 0; y < sizeRegistre ; y++){
-			nouvelleValeur[y] = 1;
+			nouvelleValeur[y] = 0;
 			changerValeurRegistre(registre, nouvelleValeur, position);
 		}
 	}
-	else
-		decimalBinaireBool(registre, resultat ,position);
+	else {
+		resultat = dPremierRegistre%dDeuxiemeRegistre;
+		decimalBinaireBool(registre, resultat ,position);	
+	}
 }
