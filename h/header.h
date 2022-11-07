@@ -1,7 +1,9 @@
 using namespace std;
 
 const int sizeNombreRegistre = 50;
+const int sizeLigneDeCode = 15;
 const int sizeRegistre = 32;
+const int memoireProgramme = 20;
 
 //Affichage 
 void sautDeLigne(int size);
@@ -16,11 +18,11 @@ void affichageTableauChar(char tableau[], int size);
 
 void afficherTabBool(bool registre[sizeNombreRegistre][sizeRegistre]);
 
-void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif);
+void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], string memoire[memoireProgramme][sizeLigneDeCode],bool & verif);
 
 void affichageRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position);
 
-void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif);
+void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], string memoire[memoireProgramme][sizeLigneDeCode], bool & verif);
 
 void commande();
 
@@ -53,7 +55,7 @@ void sous(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistr
 
 void multi(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position);
 
-void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[]);
+void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[], int decalage);
 
 void recuperateurNombre(string saisie, char retenuChiffre[]);
 
@@ -75,6 +77,17 @@ bool verificateurRegistre(string stringNombre[], int & nombreRetenu, int size, b
 bool verificateurEntrerBinaire(char charNombre[], int size);
 
 bool verificateurNombreTerminal(char stringNombre[], long long unsigned int & intNombre);
+
+bool verificateurCalculateurRegistre(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[], int & nombreRetenueUn, int & nombreRetenueDeux, int & nombreRetenueTrois, int decalage);
+
+bool verificateurInitRegistre(string saisie, char retenuUn[], int & nombreRetenueDeux, int decalage);
+
+bool verificateurInitToutLesRegistres(string saisie, int decalage);
+
+bool verificateurEntrerRegistre(string saisie, char retenuUn[], int & nombreRetenueUn, int decalage);
+
+bool verificateurProgrammeRegistre(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[], int & nombreRetenueUn, int & nombreRetenueDeux, int & nombreRetenueTrois, int decalage);
+
 //Init 
 int *initTableauInt(int tableau[], int size); 
 
@@ -84,13 +97,18 @@ int *tabStringaEntier(std::string & tabString, int *tabBinaire);
 
 void initRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre]);
 
+void initMemoireProgramme(string (&memoire)[memoireProgramme][sizeLigneDeCode]); 
+
 void initTableauBool(bool *tableauOriginal);
 
 void initTableauChar(char tableauOriginal[]);
+
 //Registre --> Aucun sous programme dans le fichier  
 void reinilialiserRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position);
 
 void changerValeurRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], bool nouvelleValeur[sizeRegistre], int position);
+
+void changerValeurMemoire(string memoire[sizeNombreRegistre][sizeRegistre], string saisie, int position);
 
 void randomRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position);
 

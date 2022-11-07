@@ -25,12 +25,9 @@ void affichageTableauString(string tableau){
 }
 
 void affichageTableauChar(char tableau[], int size){
-    int compteur = 0;
     for(int i = 0; i <= size; i++){
-        compteur = i;
         cout<<tableau[i];
     }
-    cout<<" Le compteur "<<compteur<<endl;
     cout<<endl;
 }
 
@@ -43,7 +40,7 @@ void afficherTabBool(bool registre[sizeNombreRegistre][sizeRegistre]){
     }
 }
 
-void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif){
+void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], string memoire[memoireProgramme][sizeLigneDeCode], bool & verif){
     if(verif == true){
         system("cls");
         espace(1);
@@ -51,22 +48,38 @@ void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], 
         espace(199);
         cout<<"REGISTRE"<<endl;
         sautDeLigne(1);
-        for(int i = 0; i < sizeNombreRegistre ; i++){
-            espace(199);
-            if(i < 10){
-                cout<<i<<"   ";
-/*                if( i < 5){
-                    cout<<"Coucou je suis aligne";
-                    espace(150);
-                    cout<<i<<"   ";
+        for(int i = 0, compteur = 0; i < sizeNombreRegistre ; i++){
+            if(i < memoireProgramme + 12){
+                if(i == 11){
+                    cout<<"Memoire Programme ";
+                }
+                if(i >= 12){
+                    /*espace(3); */
+                    if(compteur < 10)
+                        cout<<compteur<<"  ";
+                    else 
+                        cout<<compteur<<" ";
+                    for(int j = 0; j < sizeLigneDeCode; j++){
+                        cout<<memoire[i - 12][j];
+                    }
+                    compteur++;
+                }
+                if( i <= 9){
+                    espace(198);
+                    cout<<i<<"  ";
+                }
+                else if ( i <= 10){
+                    espace(198);
+                    cout<<i<<" ";
                 }
                 else {
-                    espace(150);
-                    cout<<i<<"   ";
-                }*/
+                    espace(180);
+                    cout<<i<<" ";
+                }
             } 
             else {
-                cout<<i<<"  ";
+                espace(198);
+                cout<<i<<" ";
             }
             for(int j = 0; j < sizeRegistre; j++){
                 cout<<registre[i][j];
@@ -77,6 +90,7 @@ void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], 
     }
 }
 
+
 void affichageRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position){
     for(int i = 0; i < sizeRegistre; i++){
         cout<<registre[position][i];
@@ -84,9 +98,9 @@ void affichageRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int p
     cout<<endl;
 }
 
-void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], bool & verif){
+void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], string memoire[memoireProgramme][sizeLigneDeCode], bool & verif){
     system("pause");
-    affichageTerminalRegistre(registre, verif);   
+    affichageTerminalRegistre(registre, memoire,verif);   
 }
 
 void commande(){

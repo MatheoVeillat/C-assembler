@@ -10,13 +10,22 @@ void changerValeurRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], b
 	}
 }
 
+void changerValeurMemoire(string memoire[memoireProgramme][sizeLigneDeCode], string saisie, int position){
+	for(int i = 0; i < memoireProgramme; i++){
+		memoire[position][i] = saisie[i];
+		if(saisie.length() <= i ){
+			memoire[position][i] = " ";
+		}
+	}
+}
+
 void randomRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position){
 	bool nouvelleValeur[sizeRegistre];
 	int n; 
 	for(int i = 0; i < sizeRegistre; i++){
 		n = rand()%2; 
 		nouvelleValeur[i] = n;
-	}
+	}c 
 	changerValeurRegistre(registre, nouvelleValeur, position);
 }	
 

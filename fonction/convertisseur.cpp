@@ -177,14 +177,14 @@ void multi(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegist
 		decimalBinaireBool(registre, resultat ,position);
 }
 
-void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[]){
-	for(int i = 1; i < saisie.length(); i++){	
-		if(i == 1 || i == 2 )
-			retenuUn[i - 1] = saisie[i];
-		else if(i == 5 || i == 6)
-			retenuDeux[i - 5] = saisie[i];
-		else if(i == 12 || i == 13)
-			retenuTrois[i - 12] = saisie[i];
+void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[], int decalage){
+	for(int i = 1 + decalage; i < saisie.length(); i++){	
+		if(i == 1 + decalage|| i == 2 + decalage)
+			retenuUn[i - 1 - decalage] = saisie[i];
+		else if(i == 5 + decalage|| i == 6 + decalage)
+			retenuDeux[i - 5 - decalage] = saisie[i];
+		else if(i == 12 + decalage || i == 13 + decalage)
+			retenuTrois[i - 12 - decalage] = saisie[i];
 	}
 }
 
