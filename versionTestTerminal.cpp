@@ -14,27 +14,6 @@
 #include "fonction/verificateur.cpp"
 #include "fonction/init.cpp"
 #include "fonction/registre.cpp"
-#include "fonction/fichier.cpp"
-
-
-/*Memo
-
-A faire 
-
-entre un , hexadecimal, binaire 
-afficher decimal, hexadecimal 
-
-
-
-&nombreDecimal 
-
-&*& --> Sauvegarde 
-
-
-
-de nimporte quelle base a nimp quel base 
-
-*/
 
 void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 	::SendMessage(::GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
@@ -79,7 +58,7 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 			cout<<"Le registre "<<nombreRetenueUn<<" est reinilialiser"<<endl;
 			pauseNewAffichage(registre, memoire, verif = true);
 		}  
-		else if(verificateurInitToutLesRegistres(saisie, 0)){ 
+		else if(verificateurInitToutLesRegistres(saisie, 0) && saisie[0] != '~'){ 
 			initRegistre(registre); 
 			cout<<" Reussi init"<<endl;
 			pauseNewAffichage(registre, memoire, verif = true);
@@ -101,8 +80,8 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 			pauseNewAffichage(registre, memoire, verif = true);
 		}
 		else if(verificateurProgrammeRegistre(saisie, retenuUn, retenuDeux, retenuTrois, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois)){
-			cout<<"deja "<<endl;
 			changerValeurMemoire(memoire, saisie, compteur);
+			pauseNewAffichage(registre, memoire, verif = true);
 			compteur++;
 		}
 /*		else if(saisie[0] == '|' && saisie.length() == 3){
@@ -110,6 +89,10 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 				cout<<"test"<<endl;
 				cout<<"Le registre "<<nombreRetenueUn<<" possede le nombre hexadecimal "<<decimalHexadecimalRegistre(registre, nombreRetenueUn)<<endl;
 		}*/
+		else if(verificateurInitToutLesRegistres(saisie, 0)){
+			compilateur(registre, memoire);
+			pauseNewAffichage(registre, memoire, verif = true);
+		}
 		else if(saisie == "help"){
 			system("cls");
 			commande();

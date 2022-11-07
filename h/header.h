@@ -26,8 +26,6 @@ void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], string m
 
 void commande();
 
-void affichageClavierTdeux(int & nombre, string phraseDebut,string motUn, string motDeux, HANDLE console);
-
 //Convertisseur
 int *inverserTableauBinaireInt(int *tableauOriginal, int size);
 
@@ -114,9 +112,4 @@ void randomRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int posi
 
 void randomTableau(bool (&registre)[sizeNombreRegistre][sizeRegistre]);
 
-// Fichier 
-void fichierCree();
-
-void fichierSupprimer();
-
-void renommer();
+void compilateur(bool registre[sizeNombreRegistre][sizeRegistre], string memoire[memoireProgramme][sizeLigneDeCode]);

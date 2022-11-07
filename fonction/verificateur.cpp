@@ -108,7 +108,8 @@ bool verificateurInitRegistre(string saisie, char retenuUn[], int & nombreRetenu
 }
 
 bool verificateurInitToutLesRegistres(string saisie, int decalage){
-	if(saisie[decalage] == '*' && saisie[1 + decalage] == '*' && saisie.length() == 2 + decalage)
+	if(saisie[decalage] == '*' && saisie[1 + decalage] == '*' && saisie.length() == 2 + decalage
+	|| saisie[decalage] == '~' && saisie[1 + decalage] == '~' && saisie.length() == 2 + decalage)
 		return true;
 	else return false;
 }
