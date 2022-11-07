@@ -25,7 +25,7 @@ void randomRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int posi
 	for(int i = 0; i < sizeRegistre; i++){
 		n = rand()%2; 
 		nouvelleValeur[i] = n;
-	}c 
+	}
 	changerValeurRegistre(registre, nouvelleValeur, position);
 }	
 
