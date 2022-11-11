@@ -30,8 +30,6 @@ void inverserTableauChar(char tableauOriginal[]){
 	}
 }
 
-//--> Convertisseur decimal, binaire qui mets la valeur dans un tableau de multiple de 4 et qui retourne un entier 
-
 int *decimalBinaireInt(std::string & stringNombre, int & size){ //--> Casser 
 	int nombreInitTableau = 1, i = 0, impossibleDiviser = verificateur(stringNombre);
 	int nouveauNombre = impossibleDiviser, nouvelleBoucle = impossibleDiviser; 
@@ -63,7 +61,7 @@ void decimalBinaireBool(bool (&registre)[sizeNombreRegistre][sizeRegistre], long
 	changerValeurRegistre(registre, tabBinaire, position);
 }
 
-int binaireDecimal(std::string & tabString, int tabBinaire[]){ //--> Casser 
+int binaireDecimal(std::string & tabString, int tabBinaire[]){ 
 	int nombreDecimal = 0;
     verificateurBinaire(tabString);
 	tabBinaire = tabStringaEntier(tabString, tabBinaire);
@@ -178,13 +176,16 @@ void multi(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegist
 }
 
 void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenuTrois[], int decalage){
-	for(int i = 1 + decalage; i < saisie.length(); i++){	
-		if(i == 1 + decalage|| i == 2 + decalage)
-			retenuUn[i - 1 - decalage] = saisie[i];
-		else if(i == 5 + decalage|| i == 6 + decalage)
+	for(int i = 1 + decalage; i < saisie.length() ; i++){	
+		if(i == 1 + decalage || i == 2 + decalage){
+			retenuUn[i - 1 - decalage] = saisie[i];		
+		}
+		else if(i == 5 + decalage|| i == 6 + decalage){
 			retenuDeux[i - 5 - decalage] = saisie[i];
-		else if(i == 12 + decalage || i == 13 + decalage)
+		}
+		else if(i == 12 + decalage || i == 13 + decalage){
 			retenuTrois[i - 12 - decalage] = saisie[i];
+		}
 	}
 }
 

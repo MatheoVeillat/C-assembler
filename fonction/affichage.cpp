@@ -25,7 +25,7 @@ void affichageTableauString(string tableau){
 }
 
 void affichageTableauChar(char tableau[], int size){
-    for(int i = 0; i <= size; i++){
+    for(int i = 0; i < size; i++){
         cout<<tableau[i];
     }
     cout<<endl;
@@ -106,7 +106,7 @@ void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], string m
 void commande(){
     cout<<"COMMANDE"<<endl;
     sautDeLigne(1);
-    cout<<"&[<numero registre>] ![<nombre décimal>] --> Convertie un nombre decimal dans un registre"<<endl;
+    cout<<"&[<numero registre>] ![<nombre decimal>] --> Convertie un nombre decimal dans un registre"<<endl;
     cout<<"&[<numero registre>] :[<nombre binaire>] --> Convertie un nombre binaire dans un registre"<<endl;
     sautDeLigne(1);
     cout<<"&[<numero registre>] --> Affiche un registre"<<endl;
@@ -122,6 +122,10 @@ void commande(){
     cout<<"*[<numero registre>] --> Reinitialise le registre"<<endl;
     cout<<"** --> Reinitialise les registres"<<endl;
     sautDeLigne(1);
+    cout<<"'~' devant une commande --> enregistre la commande dans une memoire"<<endl;
+    cout<<"~~ --> compile la commande"<<endl;
+    sautDeLigne(1);
     cout<<"/clear --> Clear le terminal"<<endl;
     cout<<"&/& --> Arret"<<endl;
+    sautDeLigne(1);
 }

@@ -45,7 +45,7 @@ string *decimalHexadecimal(std::string & stringNombre);
 
 string *decimalHexadecimalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], int position);
 
-void add(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position);
+void add(bool** (&registre), int premierRegistre, int deuxiemeRegistre, int position);
 
 void addDeux(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position);
 
@@ -95,13 +95,15 @@ int *tabStringaEntier(std::string & tabString, int *tabBinaire);
 
 void initRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre]);
 
+void initRegistrePointeur();
+
 void initMemoireProgramme(string (&memoire)[memoireProgramme][sizeLigneDeCode]); 
 
 void initTableauBool(bool *tableauOriginal);
 
 void initTableauChar(char tableauOriginal[]);
 
-//Registre --> Aucun sous programme dans le fichier  
+//Registre  
 void reinilialiserRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int position);
 
 void changerValeurRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], bool nouvelleValeur[sizeRegistre], int position);
@@ -112,4 +114,6 @@ void randomRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int posi
 
 void randomTableau(bool (&registre)[sizeNombreRegistre][sizeRegistre]);
 
-void compilateur(bool registre[sizeNombreRegistre][sizeRegistre], string memoire[memoireProgramme][sizeLigneDeCode]);
+void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]);
+
+void compilateur(bool (&registre)[sizeNombreRegistre][sizeRegistre], string (&memoire)[memoireProgramme][sizeLigneDeCode]);

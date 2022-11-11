@@ -28,10 +28,14 @@ void initRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
     }
 }
 
+/*void initRegistrePointeur(bool **registre){
+
+}*/
+
 void initMemoireProgramme(string (&memoire)[memoireProgramme][sizeLigneDeCode]){
 	for(int i = 0; i < memoireProgramme; i++){
 		for(int j = 0; j < sizeLigneDeCode; j++){
-			memoire[i][j] = "/";
+			memoire[i][j] = " ";
 		}
 	}
 }
@@ -43,8 +47,7 @@ void initTableauBool(bool tableauOriginal[]){
 }
 
 void initTableauChar(char tableauOriginal[]){
-	for(int i = 0;i <= sizeRegistre ; i++){
-		cout<<i<<endl;
+	for(int i = 0;i < sizeRegistre ; i++){
 		tableauOriginal[i] = '0';
 	}
 }

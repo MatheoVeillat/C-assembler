@@ -1,7 +1,4 @@
-//--> Attention Bug Saisie 
-
-int verificateur(string stringNombre){ //Retourne une chaine de caractere a un nombre en verifiant 
-	/*string stringNombre;*/
+int verificateur(string stringNombre){
 	char choix;
 	int intNombre = 0;
 	cout<<"Taper votre nombre"<<endl;
@@ -22,8 +19,7 @@ int verificateur(string stringNombre){ //Retourne une chaine de caractere a un n
 	return intNombre;
 }
 
-void verificateurBinaire(string stringNombre){ //Retourne une chaine de caractere a un nombre en verifiant 
-	/*string stringNombre;*/
+void verificateurBinaire(string stringNombre){ 
 	char choix;
 	int intNombre = 0;
 	cout<<"Taper votre nombre"<<endl;
@@ -43,19 +39,15 @@ bool verificateurRegistre(char stringNombre[], int & nombreRetenu, int size, boo
 	nombreRetenu = 0;
 	for(int i = 0, nombreActuelle = 0; i != size; i++){
 		if(stringNombre[i] != '1' && stringNombre[i] != '2' && stringNombre[i] != '3' && stringNombre[i] != '4' && stringNombre[i] != '5' && stringNombre[i] != '6' && stringNombre[i] != '7' && stringNombre[i] != '8' && stringNombre[i] != '9' && stringNombre[i] != '0'){
-			cout<<"le nombre i "<<stringNombre[i]<<endl;
 			return false;
 		}
 		else {
-			cout<<"le nombre i "<<stringNombre[i]<<endl;
 			nombreActuelle = int(stringNombre[i]) - 48;
 			nombreRetenu = nombreRetenu * 10 + nombreActuelle;
 		} 
 	}
-	if(nombreRetenu > sizeNombreRegistre && limitationRegistre == true) {
-		cout<<"test prout"<<endl;
-	return false;
-	}
+	if(nombreRetenu > sizeNombreRegistre && limitationRegistre == true) 
+		return false;
 	else return true;
 }
 
@@ -97,6 +89,7 @@ bool verificateurCalculateurRegistre(string saisie, char retenuUn[], char retenu
 	}
 	else return false;
 }
+
 
 bool verificateurInitRegistre(string saisie, char retenuUn[], int & nombreRetenueUn, int decalage){
 	if(saisie[decalage] == '*' && saisie[1 + decalage] != '*' && saisie.length() == 3 + decalage){
