@@ -50,7 +50,6 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 		affichageTerminalRegistre(registre, memoire, verif);
 		getline(cin,saisie);
 		recuperateur(saisie, retenuUn, retenuDeux, retenuTrois, 0);
-
 		if(verificateurCalculateurRegistre(saisie, retenuUn, retenuDeux, retenuTrois, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois, 0) && saisie[9] == '1'){ 
 			add(registre, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois);
 			cout<<"Succes addition "<<endl;
@@ -76,18 +75,26 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 			cout<<"Succes obtention du reste "<<endl;
 			pauseNewAffichage(registre, memoire, verif = true);
 		}
-		else if(verificateurInitRegistre(saisie, retenuUn, nombreRetenueUn, 0)){
+		else if(verificateurEntrerRegistre(saisie,retenuUn, nombreRetenueUn, 0) && saisie[4] == '|'){
+			decimalHexadecimalRegistre(registre, nombreRetenueUn);
+			pauseNewAffichage(registre, memoire, verif = true);
+		}
+		else if(verificateurInitRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[0] != '/'){
 			reinilialiserRegistre(registre, nombreRetenueUn);
 			cout<<"Le registre "<<nombreRetenueUn<<" est reinilialiser"<<endl;
 			pauseNewAffichage(registre, memoire, verif = true);
 		}  
-		else if(verificateurInitToutLesRegistres(saisie, 0) && saisie[0] != '~'){ 
+		else if(verificateurInitToutLesRegistres(saisie, 0) && saisie[0] != '~' && saisie[0] != '/'){ 
 			initRegistre(registre); 
 			cout<<" Reussi init"<<endl;
 			pauseNewAffichage(registre, memoire, verif = true);
 		}
+		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[4] == ':' && saisie.length() == 5){ 
+			affichageRegistre(registre, nombreRetenueUn);
+			pauseNewAffichage(registre, memoire, verif = true);
+		}
 		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[4] == ':'){
-			entrerBinaire(registre, saisie, retenuChiffre, nombreRetenueUn);
+			entrerBinaire(registre, saisie, retenuChiffre, nombreRetenueUn, 0);
 			pauseNewAffichage(registre, memoire, verif = true);
 		}
 		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[4] == '!' && saisie.length() == 5){
@@ -95,11 +102,17 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 			pauseNewAffichage(registre, memoire, verif = true);
 		}
 		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[4] == '!'){ 
-			entrerDecimal(registre, saisie, retenuChiffre, nombreRetenueUn);
+			entrerDecimal(registre, saisie, retenuChiffre, nombreRetenueUn, 0);
 			pauseNewAffichage(registre, memoire, verif = true);
 		}
-		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie.length() == 3){ 
-			affichageRegistre(registre, nombreRetenueUn);
+		else if(verificateurInitToutLesRegistres(saisie, 0) && saisie[0] == '/'){
+			randomTableau(registre);
+			cout<<"Registre Aleatoire"<<endl;
+			pauseNewAffichage(registre, memoire, verif = true);
+		}
+		else if(verificateurInitRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[0] == '/'){
+			randomRegistre(registre, nombreRetenueUn);
+			cout<<"Le registre "<<nombreRetenueUn<<" est devenu aleatoire"<<endl;
 			pauseNewAffichage(registre, memoire, verif = true);
 		}
 		else if(verificateurProgrammeRegistre(saisie, retenuUn, retenuDeux, retenuTrois, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois)){
@@ -107,11 +120,6 @@ void terminal(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
 			pauseNewAffichage(registre, memoire, verif = true);
 			compteur++;
 		}
-/*		else if(saisie[0] == '|' && saisie.length() == 3){
-			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
-				cout<<"test"<<endl;
-				cout<<"Le registre "<<nombreRetenueUn<<" possede le nombre hexadecimal "<<decimalHexadecimalRegistre(registre, nombreRetenueUn)<<endl;
-		}*/
 		else if(verificateurInitToutLesRegistres(saisie, 0)){
 			compilateur(registre, memoire);
 			pauseNewAffichage(registre, memoire, verif = true);
@@ -154,30 +162,46 @@ void compilateur(bool (&registre)[sizeNombreRegistre][sizeRegistre], string (&me
 			divisionRegistre(registre, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois);
 		else if(verificateurCalculateurRegistre(saisie, retenuUn, retenuDeux, retenuTrois, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois, 1) && saisie[10] == '5')
 			divisionRegistreReste(registre, nombreRetenueUn, nombreRetenueDeux, nombreRetenueTrois);
-		/*
-		else if(verificateurInitRegistre(saisie, retenuUn, nombreRetenueUn, 0))
+		else if(verificateurInitRegistre(saisie, retenuUn, nombreRetenueUn, 1)){
 			reinilialiserRegistre(registre, nombreRetenueUn);
-		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[4] == ':'){
-			entrerBinaire(registre, saisie, retenuChiffre, nombreRetenueUn);
-		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[4] == '!' && saisie.length() == 5){
-			cout<<"Le registre "<<nombreRetenueUn<<" possede le nombre decimal "<<binaireDecimalBool(registre, nombreRetenueUn)<<endl;
 		}
-		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie[4] == '!')
-			entrerDecimal(registre, saisie, retenuChiffre, nombreRetenueUn);
-		else if(verificateurEntrerRegistre(saisie, retenuUn, nombreRetenueUn, 0) && saisie.length() == 3) 
-			affichageRegistre(registre, nombreRetenueUn);*/
-/*		else if(saisie[0] == '|' && saisie.length() == 3){
+		else if(saisie[1] == '*' && saisie[2] == '*')
+			initRegistre(registre);
+		else if(saisie[1] == '/' && saisie[2] == '/')
+			randomTableau(registre);
+		else if(saisie[1] == '*'){
 			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
-				cout<<"test"<<endl;
-				cout<<"Le registre "<<nombreRetenueUn<<" possede le nombre hexadecimal "<<decimalHexadecimalRegistre(registre, nombreRetenueUn)<<endl;
+				reinilialiserRegistre(registre, nombreRetenueUn);
+		}
+		else if(saisie[1] == '/'){
+			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
+				randomRegistre(registre, nombreRetenueUn);
+		}
+		else if(saisie[1] == '&' && saisie[4] == ' ' && saisie[5] == '!'){
+			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true)){
+				cout<<"Le registre "<<nombreRetenueUn<<" possede le nombre decimal "<<binaireDecimalBool(registre, nombreRetenueUn)<<endl;
+			}
+		}
+		else if(saisie[1] == '&' && saisie[4] == ' ' && saisie[5] == ':'){
+			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
+				affichageRegistre(registre, nombreRetenueUn);
+		}
+		else if(saisie[1] == '&' && saisie[4] == ' ' && saisie[5] == '|'){
+			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
+				decimalHexadecimalRegistre(registre, nombreRetenueUn);
+		}
+		else if(saisie[1] == '&' && saisie[4] == ' ' && saisie[5] == '@'){
+			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true)){
+				entrerBinaire(registre, saisie, retenuChiffre, nombreRetenueUn, 1);
+			}
+		}
+/*		else if(saisie[1] == '&' && saisie[4] == ' ' && saisie[5] == '#'){
+			cout<<"test"<<endl;
+			if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true)){
+				cout<<"test 4"<<endl;
+				entrerDecimal(registre, saisie, retenuChiffre, nombreRetenueUn, 1);
+			}
 		}*/
-/*		else if(verificateurInitToutLesRegistres(saisie, 0)){
-			cout<<"Yessss"<<endl;
-			pauseNewAffichage(registre, memoire, verif = true);
-		} */
-/*		else cout<<"ERROR"<<endl;
-		sautDeLigne(1);
-	}*/
 	}
 	initMemoireProgramme(memoire);
 }

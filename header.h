@@ -43,7 +43,7 @@ long long unsigned int binaireDecimalBool(bool registre[sizeNombreRegistre][size
 
 string *decimalHexadecimal(std::string & stringNombre);
 
-string *decimalHexadecimalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], int position);
+void decimalHexadecimalRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre],  int position);
 
 void add(bool** (&registre), int premierRegistre, int deuxiemeRegistre, int position);
 
@@ -57,9 +57,9 @@ void recuperateur(string saisie, char retenuUn[], char retenuDeux[], char retenu
 
 void recuperateurNombre(string saisie, char retenuChiffre[]);
 
-void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position);
+void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position, int decalage);
 
-void entrerDecimal(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position);
+void entrerDecimal(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position, int decalage);
 
 void divisionRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position);
 

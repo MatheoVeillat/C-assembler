@@ -28,9 +28,6 @@ void initRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre]){
     }
 }
 
-/*void initRegistrePointeur(bool **registre){
-
-}*/
 
 void initMemoireProgramme(string (&memoire)[memoireProgramme][sizeLigneDeCode]){
 	for(int i = 0; i < memoireProgramme; i++){
@@ -48,6 +45,6 @@ void initTableauBool(bool tableauOriginal[]){
 
 void initTableauChar(char tableauOriginal[]){
 	for(int i = 0;i < sizeRegistre ; i++){
-		tableauOriginal[i] = '0';
+		tableauOriginal[i] = '/';
 	}
 }

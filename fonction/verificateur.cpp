@@ -51,7 +51,7 @@ bool verificateurRegistre(char stringNombre[], int & nombreRetenu, int size, boo
 	else return true;
 }
 
-bool verificateurEntrerBinaire(char charNombre[], int size){  //delete 
+bool verificateurEntrerBinaire(char charNombre[], int size){  
 	int intNombre = 0;
 	for(int i = 0, nombreActuelle = 0; i != size; i++){
 		if(charNombre[i] != '1' && charNombre[i] != '0')
@@ -62,12 +62,12 @@ bool verificateurEntrerBinaire(char charNombre[], int size){  //delete
 
 bool verificateurNombreTerminal(char stringNombre[], long long unsigned int & intNombre){ 
 	for(int i = 0, nombreActuelle = 0, compteur = 0; stringNombre[compteur] != '/' ;i++){
-		if(stringNombre[i] != '/' && stringNombre[i] != '1' && stringNombre[i] != '2' && stringNombre[i] != '3' && stringNombre[i] != '4' && stringNombre[i] != '5' && stringNombre[i] != '6' && stringNombre[i] != '7' && stringNombre[i] != '8' && stringNombre[i] != '9' && stringNombre[i] != '0')
+		if(stringNombre[i] != '/' && stringNombre[i] != ' ' && stringNombre[i] != '1' && stringNombre[i] != '2' && stringNombre[i] != '3' && stringNombre[i] != '4' && stringNombre[i] != '5' && stringNombre[i] != '6' && stringNombre[i] != '7' && stringNombre[i] != '8' && stringNombre[i] != '9' && stringNombre[i] != '0')
 		{
 			return false;	
 		}	
 		else {
-			if(stringNombre[i] != '/'){
+			if(stringNombre[i] != '/' && stringNombre[i] != ' '){
 				nombreActuelle = int(stringNombre[i]) - 48;
 				intNombre = intNombre * 10 + nombreActuelle;
 				compteur++;
@@ -92,7 +92,8 @@ bool verificateurCalculateurRegistre(string saisie, char retenuUn[], char retenu
 
 
 bool verificateurInitRegistre(string saisie, char retenuUn[], int & nombreRetenueUn, int decalage){
-	if(saisie[decalage] == '*' && saisie[1 + decalage] != '*' && saisie.length() == 3 + decalage){
+	if(saisie[decalage] == '*' && saisie[1 + decalage] != '*' && saisie.length() == 3 + decalage
+	|| saisie[decalage] == '/' && saisie[1 + decalage] != '/' && saisie.length() == 3 + decalage){
 		if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
 			return true;
 		else return false;
@@ -102,7 +103,9 @@ bool verificateurInitRegistre(string saisie, char retenuUn[], int & nombreRetenu
 
 bool verificateurInitToutLesRegistres(string saisie, int decalage){
 	if(saisie[decalage] == '*' && saisie[1 + decalage] == '*' && saisie.length() == 2 + decalage
-	|| saisie[decalage] == '~' && saisie[1 + decalage] == '~' && saisie.length() == 2 + decalage)
+	|| saisie[decalage] == '~' && saisie[1 + decalage] == '~' && saisie.length() == 2 + decalage
+	|| saisie[decalage] == '~' && saisie[1 + decalage] == '~' && saisie.length() == 2 + decalage
+	|| saisie[decalage] == '/' && saisie[1 + decalage] == '/' && saisie.length() == 2 + decalage)
 		return true;
 	else return false;
 }
@@ -111,6 +114,9 @@ bool verificateurEntrerRegistre(string saisie, char retenuUn[], int & nombreRete
 	if(saisie[decalage] == '&' && saisie[3 + decalage] == ' ' && saisie[4 + decalage] == ':'
 	|| saisie[decalage] == '&' && saisie[3 + decalage] == ' ' && saisie[4 + decalage] == '!' && saisie.length() == 5 + decalage
 	|| saisie[decalage] == '&' && saisie[3 + decalage] == ' ' && saisie[4 + decalage] == '!'
+	|| saisie[decalage] == '&' && saisie[3 + decalage] == ' ' && saisie[4 + decalage] == '|'
+	|| saisie[decalage] == '&' && saisie[3 + decalage] == ' ' && saisie[4 + decalage] == '@'
+	|| saisie[decalage] == '&' && saisie[3 + decalage] == ' ' && saisie[4 + decalage] == '#'
 	|| saisie[decalage] == '&' && saisie.length() == 3 + decalage){
 		if(verificateurRegistre(retenuUn, nombreRetenueUn, 2, true))
 			return true;

@@ -43,8 +43,6 @@ void afficherTabBool(bool registre[sizeNombreRegistre][sizeRegistre]){
 void affichageTerminalRegistre(bool registre[sizeNombreRegistre][sizeRegistre], string memoire[memoireProgramme][sizeLigneDeCode], bool & verif){
     if(verif == true){
         system("cls");
-        espace(1);
-        cout<<"HISTORIQUE"<<endl;
         espace(199);
         cout<<"REGISTRE"<<endl;
         sautDeLigne(1);
@@ -104,27 +102,42 @@ void pauseNewAffichage(bool registre[sizeNombreRegistre][sizeRegistre], string m
 }
 
 void commande(){
+    espace(50);
     cout<<"COMMANDE"<<endl;
     sautDeLigne(1);
+    cout<<"CONVERTION"<<endl;
     cout<<"&[<numero registre>] ![<nombre decimal>] --> Convertie un nombre decimal dans un registre"<<endl;
     cout<<"&[<numero registre>] :[<nombre binaire>] --> Convertie un nombre binaire dans un registre"<<endl;
     sautDeLigne(1);
+    cout<<"AFFICHAGE"<<endl;
     cout<<"&[<numero registre>] --> Affiche un registre"<<endl;
     cout<<"&[<numero registre>] ! --> Affiche un registre en decimal"<<endl;
+    cout<<"&[<numero registre>] ! --> Affiche un registre en hexadecimal"<<endl;
     cout<<"help --> Affiche les commandes"<<endl;
     sautDeLigne(1);
+    cout<<"CALCUL"<<endl;
     cout<<"&[<numero registre>] &[<numero registre>] 01 &[<numero registre>] --> Addition"<<endl;
     cout<<"&[<numero registre>] &[<numero registre>] 02 &[<numero registre>] --> Soustraction"<<endl;
     cout<<"&[<numero registre>] &[<numero registre>] 03 &[<numero registre>] --> Multiplication"<<endl;
     cout<<"&[<numero registre>] &[<numero registre>] 04 &[<numero registre>] --> Division"<<endl;
     cout<<"&[<numero registre>] &[<numero registre>] 05 &[<numero registre>] --> Reste de la Division"<<endl;
     sautDeLigne(1);
+    cout<<"REINITIALISATION"<<endl;
     cout<<"*[<numero registre>] --> Reinitialise le registre"<<endl;
     cout<<"** --> Reinitialise les registres"<<endl;
     sautDeLigne(1);
+    cout<<"ALEATOIRE"<<endl;
+    cout<<"*[<numero registre>] --> mets le registre aleatoire"<<endl;
+    cout<<"// --> Tout les registres aleatoire"<<endl;
+    sautDeLigne(1);
+    cout<<"MEMORY"<<endl;
     cout<<"'~' devant une commande --> enregistre la commande dans une memoire"<<endl;
     cout<<"~~ --> compile la commande"<<endl;
+    cout<<"changement pour ces variables"<<endl;
+    cout<<"&[<numero registre>] @[<nombre binaire>] --> Convertie un nombre binaire dans un registre"<<endl;
+    cout<<"Convertion un nombre decimal dans un registre n'est pas disponible dans la memory"<<endl;
     sautDeLigne(1);
+    cout<<"TERMINAL"<<endl;
     cout<<"/clear --> Clear le terminal"<<endl;
     cout<<"&/& --> Arret"<<endl;
     sautDeLigne(1);

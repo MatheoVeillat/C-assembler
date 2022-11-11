@@ -80,7 +80,7 @@ long long unsigned int binaireDecimalBool(bool registre[sizeNombreRegistre][size
 }
 
 
-string *decimalHexadecimal(std::string & stringNombre){ //--> Casser 
+string *decimalHexadecimal(std::string & stringNombre){ 
 	int size = 0, *tabBinaire = new int;
 	string *tableauRetenu = new string[4]; 
 	tableauRetenu = initTableauString(tableauRetenu, 4);
@@ -93,20 +93,22 @@ string *decimalHexadecimal(std::string & stringNombre){ //--> Casser
 	return tableauHexadecimal;
 }
 
-/*string *decimalHexadecimalRegistre(bool registre[sizeNombreRegistre][sizeRegistre],  int position){ //--> Casser 
-	int size = 0, *tabBinaire = new int;
-	string *tableauRetenu = new string[4]; 
-	tableauRetenu = initTableauString(tableauRetenu, 4);
-	tabBinaire = decimalBinaireInt(stringNombre, size);
-	string *tableauHexadecimal = new string[size/4];
+void decimalHexadecimalRegistre(bool (&registre)[sizeNombreRegistre][sizeRegistre],  int position){
+	int tabBinaire[sizeRegistre];
+	for(int y = 0; y < sizeRegistre; y++){
+		if(registre[position][y] == 0)
+			tabBinaire[y] = 0;
+		else
+			tabBinaire[y] = 1;
+	}
 	char symbl[16] = {'0', '1', '2','3','4','5','6','7','8','9','A', 'B', 'C','D','E','F'};
+	string *tableauHexadecimal = new string[sizeRegistre];
 	for(int i = 0, compteur = 3, j  = 0; i < sizeRegistre; i = i + 4, j++){
 		tableauHexadecimal[j] = symbl[8 * tabBinaire[compteur - 3 + i] + 4 * tabBinaire[compteur - 2 + i]+ 2 * tabBinaire[compteur - 1 + i]+ tabBinaire[compteur + i] ];
-	} 
-	return tableauHexadecimal;
-}*/
-
-
+		cout<<tableauHexadecimal[j];
+	}
+	cout<<endl;
+}
 void add(bool (&registre)[sizeNombreRegistre][sizeRegistre], int premierRegistre, int deuxiemeRegistre, int position){
 	bool nouvelleValeur[sizeRegistre];
 	int retenue = 0;
@@ -193,23 +195,25 @@ void recuperateurNombre(string saisie, char retenuChiffre[], int position){
 	for(int y = 0; y <= sizeRegistre; y++){
 		if(y + position + 1 > saisie.length())
 			retenuChiffre[y] = '/';
-		else
+		else{
 			retenuChiffre[y] = saisie[y + position];
+		}
 	}
 }
 
-void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position){ 
+void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position, int decalage){ 
 	bool nouvelleValeur[sizeRegistre];
 	int compteur = 0; 
-	recuperateurNombre(saisie, retenuChiffre, 5);
+	recuperateurNombre(saisie, retenuChiffre, 5 + decalage);
 	initTableauBool(nouvelleValeur);
 	for(int i = 0; i < sizeRegistre; i++){
 		if(retenuChiffre[i] == '0')
 			nouvelleValeur[i] = 0;
 		else if(retenuChiffre[i] == '1')
 			nouvelleValeur[i] = 1;
-		else if(retenuChiffre[i] != '1' && retenuChiffre[i] != '0' && retenuChiffre[i] != '/')
+		else if(retenuChiffre[i] != '1' && retenuChiffre[i] != '0' && retenuChiffre[i] != '/' && retenuChiffre[i] != ' '){
 			compteur++;
+		}
 	}
 	if(compteur == 0){
 		inverserTableauBinaireBool(nouvelleValeur);
@@ -220,12 +224,12 @@ void entrerBinaire(bool (&registre)[sizeNombreRegistre][sizeRegistre], string sa
 		cout<<"ERROR"<<endl;
 }
 
-void entrerDecimal(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position){
+void entrerDecimal(bool (&registre)[sizeNombreRegistre][sizeRegistre], string saisie, char retenuChiffre[], int position, int decalage){
 	long long unsigned int resultat = 0 ;
-	recuperateurNombre(saisie, retenuChiffre, 5);
+	recuperateurNombre(saisie, retenuChiffre, 5 + decalage);
 	if(verificateurNombreTerminal(retenuChiffre, resultat)){
 		decimalBinaireBool(registre, resultat, position);
-		cout<<"La valeur decimal "<<resultat<<" a ete convertie dans le registre "<<position<<endl;
+		cout<<"Succes saisie"<<endl;
 	}
 	else 
 		cout<<"ERROR"<<endl;
