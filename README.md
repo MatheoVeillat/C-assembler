@@ -20,12 +20,12 @@ Pour améliorer mes compétences dans le langage C++, j'ai décidé de créer un
   * ** --> Reinitialise les registres
 * Aléatoire
   * // --> Tout les registres aleatoire
-  * /[<numero registre>] --> mets le registre aleatoire
+  * /"<numero registre>" --> mets le registre aleatoire
 * MEMORY
   * '~' devant une commande --> enregistre la commande dans une memoire
   * ~~ --> compile la commande
   * changement pour ces variables
-  * &[<numero registre>] @[<nombre binaire>] --> Convertie un nombre binaire dans un registre
+  * &"numero registre" @"nombre binaire" --> Convertie un nombre binaire dans un registre
   * Convertion un nombre decimal dans un registre n'est pas disponible dans la memory
 * TERMINAL
   * /clear --> Clear le terminal
