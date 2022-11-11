@@ -15,6 +15,8 @@ Pour améliorer mes compétences dans le langage C++, j'ai décidé de créer un
   * &"numero registre" &"numero registre" 01 &"numero registre" --> Addition
   * &"numero registre" &"numero registre" 02 &"numero registre" --> Soustraction
   * &"numero registre" &"numero registre" 03 &"numero registre" --> Multiplication
+  * &"numero registre" &"numero registre" 04 &"numero registre" --> Division
+  * &"numero registre" &"numero registre" 05 &"numero registre" --> Obtention du reste 
 * Réinitialisation
   * *"numero registre" --> Reinitialise le registre
   * ** --> Reinitialise les registres
