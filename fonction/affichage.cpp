@@ -127,7 +127,7 @@ void commande(){
     cout<<"** --> Reinitialise les registres"<<endl;
     sautDeLigne(1);
     cout<<"ALEATOIRE"<<endl;
-    cout<<"*[<numero registre>] --> mets le registre aleatoire"<<endl;
+    cout<<"/[<numero registre>] --> mets le registre aleatoire"<<endl;
     cout<<"// --> Tout les registres aleatoire"<<endl;
     sautDeLigne(1);
     cout<<"MEMORY"<<endl;
@@ -139,6 +139,7 @@ void commande(){
     sautDeLigne(1);
     cout<<"TERMINAL"<<endl;
     cout<<"/clear --> Clear le terminal"<<endl;
+    cout<<"help --> affiche les commandes"<<endl;
     cout<<"&/& --> Arret"<<endl;
     sautDeLigne(1);
 }
