@@ -28,6 +28,6 @@ Pour améliorer mes compétences dans le langage C++, j'ai décidé de créer un
   * &[<numero registre>] @[<nombre binaire>] --> Convertie un nombre binaire dans un registre
   * Convertion un nombre decimal dans un registre n'est pas disponible dans la memory
 * TERMINAL
- * /clear --> Clear le terminal
- * help --> affiche les commandes
- * &/& --> Arret
+  * /clear --> Clear le terminal
+  * help --> affiche les commandes
+  * &/& --> Arret
